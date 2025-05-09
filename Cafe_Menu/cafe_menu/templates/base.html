@@ -1,0 +1,100 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antique Bakery Cafe HTML Template by Tooplate</title>
+    <link rel="preconnect" href="{% static "https://fonts.googleapis.com" %}">
+    <link rel="preconnect" href="{% static "https://fonts.gstatic.com" %}" crossorigin>
+    <link href="{% static "https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Oswald:wght@600&display=swap" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/all.min.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/tailwind.css" %}">
+    <link rel="stylesheet" href="{% static "css/tooplate-antique-cafe.css" %}">
+    
+
+</head>
+<body>    
+    <!-- Intro -->
+    <div id="intro" class="parallax-window" data-parallax="scroll" data-image-src="{% static "img/antique-cafe-bg-01.jpg" %}">
+        <nav id="tm-nav" class="fixed w-full">
+            <div class="tm-container mx-auto px-2 md:py-6 flex items-center justify-between">
+                <!-- Cafe Name -->
+                <div class="text-2xl font-bold text-white">The Roasted Nest</div>
+        
+                <!-- Mobile Toggle Button -->
+                <button class="md:hidden py-2 px-2" id="menu-toggle">
+                    <i class="fas fa-2x fa-bars tm-text-gold"></i>
+                </button>
+        
+                <!-- Navigation Links -->
+                <ul class="hidden md:flex text-2xl font-normal flex-col md:flex-row text-right md:text-left" id="nav-list">
+                    <li class="inline-block mb-4 mx-4"><a href="#intro" class="tm-text-gold py-1 md:py-3 px-4">Intro</a></li>
+                    <li class="inline-block mb-4 mx-4"><a href="#menu" class="tm-text-gold py-1 md:py-3 px-4">Menu</a></li>
+                    <li class="inline-block mb-4 mx-4"><a href="#about" class="tm-text-gold py-1 md:py-3 px-4">About</a></li>
+                    <li class="inline-block mb-4 mx-4"><a href="#contact" class="tm-text-gold py-1 md:py-3 px-4">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        {% block content %}{% endblock content %}
+        <footer class="absolute bottom-0 left-0 w-full">
+            <div class="text-black container mx-auto tm-container p-8 text-lg flex flex-col md:flex-row justify-between">
+                <span>&copy Copyright 2025 The Roasted Nest. All rights reserved.</span>
+            </div>                
+        </footer>
+    </div>        
+</div>    
+
+<script src="{% static "js/jquery-3.6.0.min.js" %}"></script>
+<script src="{% static "js/parallax.min.js" %}"></script>
+<script src="{% static "js/jquery.singlePageNav.min.js" %}"></script>
+<script>
+
+    function checkAndShowHideMenu() {
+        if(window.innerWidth < 768) {
+            $('#tm-nav ul').addClass('hidden');                
+        } else {
+            $('#tm-nav ul').removeClass('hidden');
+        }
+    }
+
+    $(function(){
+        var tmNav = $('#tm-nav');
+        tmNav.singlePageNav();
+
+        checkAndShowHideMenu();
+        window.addEventListener('resize', checkAndShowHideMenu);
+
+        $('#menu-toggle').click(function(){
+            $('#tm-nav ul').toggleClass('hidden');
+        });
+
+        $('#tm-nav ul li').click(function(){
+            if(window.innerWidth < 768) {
+                $('#tm-nav ul').addClass('hidden');
+            }                
+        });
+
+        $(document).scroll(function() {
+            var distanceFromTop = $(document).scrollTop();
+
+            if(distanceFromTop > 100) {
+                tmNav.addClass('scroll');
+            } else {
+                tmNav.removeClass('scroll');
+            }
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

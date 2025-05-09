@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+        <div class="container mx-auto px-2 tm-min-width">
+            <div class="sm:pb-60 sm:pt-48 py-20">
+                <div class="bg-black bg-opacity-70 p-12 mb-5 text-center">
+                    <h1 class="text-white text-5xl tm-logo-font mb-5">The Roasted Nest</h1>
+                    <p class="tm-text-gold tm-text-2xl">your daily energy booster</p>
+                </div>    
+                <div class="bg-black bg-opacity-70 p-10 mb-5 max-w-screen-lg mx-auto">
+                    <p class="text-white leading-8 text-sm font-light">
+                        {{desc.description}}
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-block">
+                        <a href="#menu" class="flex justify-center items-center bg-black bg-opacity-70 py-6 px-8 rounded-lg font-semibold tm-text-2xl tm-text-gold hover:text-gray-200 transition">
+                            <i class="fas fa-coffee mr-3"></i>
+                            <span>Let's explore...</span>                        
+                        </a>
+                    </div>                    
+                </div>                
+            </div>
+        </div>        
+    </div>
+    <!-- Cafe Menu -->
+    <div id="menu" class="parallax-window" data-parallax="scroll" data-image-src="{% static "img/antique-cafe-bg-02.jpg" %}">
+        <div class="container mx-auto tm-container py-24 sm:py-48">
+            <div class="text-center mb-16">
+                <h2 class="bg-white tm-text-brown py-6 px-12 text-4xl font-medium inline-block rounded-md">Our Cafe Menu</h2>
+            </div>            
+            <div class="flex flex-col lg:flex-row justify-around items-center">
+                <div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
+                    {% for item in hot%}
+                    <div class="flex items-start justify-end mb-6 tm-menu-item-2">
+                        
+                        <div class="text-right mr-6">
+                            <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">{{item.name}}</h3>
+                            <div class="text-white text-md sm:text-lg font-light mb-1">Small ₹{{item.small_price}}</div>
+                            <div class="text-white text-md sm:text-lg font-light">Large ₹{{item.large_price}}</div>
+                        </div>
+                        <img src="{{item.image.url}}" alt="Image" height="120px" width="160px"  class="rounded-md">                   
+                    </div>
+                    {%endfor%}
+                </div>
+                <div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
+                    {% for item in cold%}
+                    <div class="flex items-start justify-end mb-6 tm-menu-item-2">
+                        
+                        <div class="text-right mr-6">
+                            <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">{{item.name}}</h3>
+                            <div class="text-white text-md sm:text-lg font-light mb-1">Small ₹{{item.small_price}}</div>
+                            <div class="text-white text-md sm:text-lg font-light">Large ₹{{item.large_price}}</div>
+                        </div>
+                        <img src="{{item.image.url}}" alt="Image" height="120px" width="160px" class="rounded-md">                   
+                    </div>
+                    {%endfor%}
+                    
+                </div>
+                <div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
+                    {% for item in desert%}
+                    <div class="flex items-start justify-end mb-6 tm-menu-item-2">
+                        
+                        <div class="text-right mr-6">
+                            <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">{{item.name}}</h3>
+                            <div class="text-white text-md sm:text-lg font-light mb-1">Price ₹{{item.price}}</div>
+                        </div>
+                        <img src="{{ item.image.url }}" height="120px" width="160px" alt="Image" class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-md">                  
+                    </div>
+                    {%endfor%}
+                    
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div id="about" class="parallax-window" data-parallax="scroll" data-image-src="{% static "img/antique-cafe-bg-03.jpg" %}">
+        <div class="container mx-auto px-2 tm-min-width">
+            <div class="sm:pb-60 sm:pt-48 py-20">
+                <div class="bg-white bg-opacity-70 p-12 mb-5 text-center">
+                    <h1 class="text-black text-5xl tm-logo-font mb-5">About The Roasted Nest</h1>
+                </div>    
+                <div class="bg-white bg-opacity-70 p-10 mb-5 max-w-screen-lg mx-auto">
+                    <p class="text-black leading-8 text-sm font-light">
+                        {{about.description}}
+                    </p>
+                </div>
+                                
+            </div>
+        </div>        
+    </div>
+    <div id="contact" class="parallax-window relative" data-parallax="scroll" data-image-src="img/antique-cafe-bg-04.jpg">
+        <div class="container mx-auto tm-container pt-24 pb-48 sm:py-48">
+            <div class="flex flex-col lg:flex-row justify-around items-center lg:items-stretch">
+                <div class="flex-1 rounded-xl px-10 py-12 m-5 bg-white bg-opacity-80 tm-item-container">
+                    <h2 class="text-3xl mb-6 tm-text-green">Contact Us</h2>
+                    <p class="mb-6 text-lg leading-8">
+                       {{contact.address}}    
+                    </p>
+                    <p class="mb-10 text-lg">
+                        <span class="block mb-2">Tel: <a href="tel:{{contact.phone_number}}" class="hover:text-yellow-600 transition">{{contact.phone_number}}</a></span>
+                        <span class="block">Email: <a href="mailto:{{contact.email}}" class="hover:text-yellow-600 transition">{{contact.email}}</a></span>                        
+                    </p>
+                    <div class="text-center">
+                        <a href="{{contact.add_url}}" class="inline-block text-white text-2xl pl-10 pr-12 py-6 rounded-lg transition tm-bg-green">
+                            <i class="fas fa-map-marked-alt mr-8"></i>
+                            Open Maps
+                        </a>
+                    </div>                    
+                </div>
+                <div class="flex-1 rounded-xl p-12 pb-14 m-5 bg-black bg-opacity-50 tm-item-container">
+                    <form action="{%url 'contact'%}" method="POST" class="text-lg">
+                        {% csrf_token %}
+                        <input type="text" name="name" class="input w-full bg-black border-b bg-opacity-0 text-white px-0 py-4 mb-4 tm-border-gold" placeholder="Name" required="" />
+                        <input type="email" name="email" class="input w-full bg-black border-b bg-opacity-0 text-white px-0 py-4 mb-4 tm-border-gold" placeholder="Email" required="" />
+                        <textarea rows="6" name="message" class="input w-full bg-black border-b bg-opacity-0 text-white px-0 py-4 mb-4 tm-border-gold" placeholder="Message..." required=""></textarea>
+                        <div class="text-right">
+                            <button type="submit" class="text-white hover:text-yellow-500 transition">Send it</button>
+                        </div>                        
+                      </form>
+                </div>
+            </div>
+            {% endblock content %}
